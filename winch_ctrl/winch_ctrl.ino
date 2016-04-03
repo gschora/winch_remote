@@ -14,7 +14,7 @@ int timecnt = 0;
 int tm = 0;
 
 void setup() {
-        // Serial.begin(57600);
+        Serial.begin(57600);
         rf12_initialize(20, RF12_868MHZ, 43); // params are byte nodeId, byte freqBand, byte netGroup
                                               // freqBands  should be RF12_915MHZ, or RF12_433MHZ
                                               // nodeId parameter should be in range of to 1-26
@@ -24,6 +24,7 @@ void setup() {
 
         pinMode(pinUp, OUTPUT);
         pinMode(pinDown, OUTPUT);
+        Serial.println("winch_ctrl");
 }
 
 void loop() {
@@ -35,10 +36,10 @@ void loop() {
                                                // the same as an array name
 
                 if (buf[0]==22 && buf[1]==44) {
-                        // Serial.println("down");
+                        Serial.println("down");
                         down();
                 }else if(buf[0]==33 && buf[1]==66) {
-                        // Serial.println("up");
+                        Serial.println("up");
                         up();
                 }
         }
